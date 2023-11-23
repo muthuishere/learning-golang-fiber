@@ -1,0 +1,47 @@
+GET http://localhost:3000
+
+
+> {%
+    client.test("Response is Hello World", function() {
+        client.assert(response.body === "Hello, World!", "Response body is not 'Hello World'");
+
+
+    });
+%}
+
+### Test For Path Variables
+
+
+GET http://localhost:3000/hello/John
+
+
+> {%
+    client.test("Hello endpoint should be response along with Parameters", function() {
+        client.assert(response.body === "Hello, John");
+
+
+    });
+%}
+
+
+### Test Addition with Valid Parameters
+
+
+GET http://localhost:3000/add/2/3
+
+> {%
+    client.test("Add endpoint should return sum", function() {
+        client.assert(response.body === "5");
+    });
+%}
+
+### Test Addition with Invalid Parameters
+
+
+GET http://localhost:3000/add/hjshdjs/3
+
+> {%
+    client.test("Add endpoint with Invalid Parameters should throw status code 400", function() {
+        client.assert(response.status === 400);
+    });
+%}
