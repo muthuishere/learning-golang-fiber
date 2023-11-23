@@ -64,9 +64,3 @@
   
 
 
------
-
-- Handle Query Strings
-- Handle Post Requests
-- Send/Receive JSON
-
